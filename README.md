@@ -1,3 +1,16 @@
+# Zygisk Module Template
+
+An Zygisk Module Template based on zygisk-module-sample.
+
+## Usage
+
+1. Edit moduleId in [build.gradle.kts](./build.gradle.kts) (It's also your module soname.).  
+2. Edit other module info in build.gradle.kts or module/template/module.prop.  
+3. Write your code in module/jni .  
+4. Run gradle task `:zipDebug` or `:zipRelease` to build the module.  
+
+---
+
 # Developing Zygisk Modules
 
 This repository hosts a template zygisk module for developers to start developing Zygisk modules. Before developing Zygisk modules, you should first check out the official documentation for [Magisk Modules](https://topjohnwu.github.io/Magisk/guides.html). Do not fork this repository for your new module; either manually clone this repository, or press the "Use this template" button in the GitHub UI.
