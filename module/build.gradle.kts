@@ -20,14 +20,28 @@ android {
             abiFilters.addAll(abiList)
         }
         externalNativeBuild {
+            /*
             ndkBuild {
                 arguments("MODULE_NAME=$moduleId")
+            }
+            */
+            cmake {
+                cppFlags("-std=c++20")
+                arguments(
+                    "-DANDROID_STL=none",
+                    "-DMODULE_NAME=$moduleId"
+                )
             }
         }
     }
     externalNativeBuild {
+        /*
         ndkBuild {
             path("src/main/cpp/Android.mk")
+        }
+        */
+        cmake {
+            path("src/main/cpp/CMakeLists.txt")
         }
     }
 }
