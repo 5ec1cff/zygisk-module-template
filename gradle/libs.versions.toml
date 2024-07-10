@@ -2,4 +2,4 @@
 agp = "8.2.0"
 
 [plugins]
-agp-lib = { id = "com.android.library", version.ref = "agp" }
+agp-app = { id = "com.android.application", version.ref = "agp" }

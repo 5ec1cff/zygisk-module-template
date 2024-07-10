@@ -4,7 +4,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 import java.security.MessageDigest
 
 plugins {
-    alias(libs.plugins.agp.lib)
+    alias(libs.plugins.agp.app)
 }
 
 val moduleId: String by rootProject.extra

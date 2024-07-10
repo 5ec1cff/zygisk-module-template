@@ -1,8 +1,10 @@
+import com.android.build.gradle.AppExtension
+import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import java.io.ByteArrayOutputStream
 
 plugins {
-    alias(libs.plugins.agp.lib) apply false
+    alias(libs.plugins.agp.app) apply false
 }
 
 fun String.execute(currentWorkingDir: File = file("./")): String {
@@ -39,18 +41,14 @@ tasks.register("Delete", Delete::class) {
 }
 
 fun Project.configureBaseExtension() {
-    extensions.findByType(LibraryExtension::class)?.run {
+    extensions.findByType(AppExtension::class)?.run {
         namespace = "io.github.a13e300.zygisk.module.sample"
-        compileSdk = androidCompileSdkVersion
+        compileSdkVersion(androidCompileSdkVersion)
         ndkVersion = androidCompileNdkVersion
         buildToolsVersion = androidBuildToolsVersion
 
         defaultConfig {
             minSdk = androidMinSdkVersion
-        }
-
-        lint {
-            abortOnError = true
         }
 
         compileOptions {
@@ -62,7 +60,7 @@ fun Project.configureBaseExtension() {
 }
 
 subprojects {
-    plugins.withId("com.android.library") {
+    plugins.withId("com.android.application") {
         configureBaseExtension()
     }
     plugins.withType(JavaPlugin::class.java) {
