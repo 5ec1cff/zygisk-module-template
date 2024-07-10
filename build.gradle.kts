@@ -1,3 +1,4 @@
+import com.android.build.gradle.LibraryExtension
 import java.io.ByteArrayOutputStream
 
 plugins {
@@ -30,9 +31,44 @@ val androidTargetSdkVersion by extra(34)
 val androidCompileSdkVersion by extra(34)
 val androidBuildToolsVersion by extra("34.0.0")
 val androidCompileNdkVersion by extra("26.0.10792818")
-val androidSourceCompatibility by extra(JavaVersion.VERSION_11)
-val androidTargetCompatibility by extra(JavaVersion.VERSION_11)
+val androidSourceCompatibility by extra(JavaVersion.VERSION_17)
+val androidTargetCompatibility by extra(JavaVersion.VERSION_17)
 
 tasks.register("Delete", Delete::class) {
     delete(rootProject.buildDir)
+}
+
+fun Project.configureBaseExtension() {
+    extensions.findByType(LibraryExtension::class)?.run {
+        namespace = "io.github.a13e300.zygisk.module.sample"
+        compileSdk = androidCompileSdkVersion
+        ndkVersion = androidCompileNdkVersion
+        buildToolsVersion = androidBuildToolsVersion
+
+        defaultConfig {
+            minSdk = androidMinSdkVersion
+        }
+
+        lint {
+            abortOnError = true
+        }
+
+        compileOptions {
+            sourceCompatibility = androidSourceCompatibility
+            targetCompatibility = androidTargetCompatibility
+        }
+    }
+
+}
+
+subprojects {
+    plugins.withId("com.android.library") {
+        configureBaseExtension()
+    }
+    plugins.withType(JavaPlugin::class.java) {
+        extensions.configure(JavaPluginExtension::class.java) {
+            sourceCompatibility = androidSourceCompatibility
+            targetCompatibility = androidTargetCompatibility
+        }
+    }
 }
