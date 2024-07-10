@@ -15,8 +15,6 @@ val commitHash: String by rootProject.extra
 val abiList: List<String> by rootProject.extra
 
 android {
-    namespace = "io.github.a13e300.zygisk.module.sample"
-    compileSdk = 34
     defaultConfig {
         ndk {
             abiFilters.addAll(abiList)
@@ -29,7 +27,7 @@ android {
     }
     externalNativeBuild {
         ndkBuild {
-            path("jni/Android.mk")
+            path("src/main/cpp/Android.mk")
         }
     }
 }

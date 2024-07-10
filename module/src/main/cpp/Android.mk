@@ -7,7 +7,7 @@ LOCAL_STATIC_LIBRARIES := libcxx
 LOCAL_LDLIBS := -llog
 include $(BUILD_SHARED_LIBRARY)
 
-include jni/libcxx/Android.mk
+include $(LOCAL_PATH)/external/libcxx/Android.mk
 
 # If you do not want to use libc++, link to system stdc++
 # so that you can at least call the new operator in your code
