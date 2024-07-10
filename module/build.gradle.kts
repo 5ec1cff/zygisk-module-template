@@ -97,7 +97,7 @@ androidComponents.onVariants { variant ->
         group = "module"
         dependsOn(prepareModuleFilesTask)
         archiveFileName.set(zipFileName)
-        destinationDirectory.set(file("$buildDir/outputs/release"))
+        destinationDirectory.set(file("$projectDir/release"))
         from(moduleDir)
     }
 
