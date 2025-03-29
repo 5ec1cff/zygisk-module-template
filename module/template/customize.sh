@@ -59,7 +59,7 @@ extract "$ZIPFILE" 'post-fs-data.sh' "$MODPATH"
 extract "$ZIPFILE" 'service.sh'      "$MODPATH"
 mv "$TMPDIR/sepolicy.rule" "$MODPATH"
 
-HAS32BIT=false && [ $(getprop ro.product.cpu.abilist32) ] && HAS32BIT=true
+HAS32BIT=false && ([ $(getprop ro.product.cpu.abilist32) ] || [ $(getprop ro.system.product.cpu.abilist32) ]) && HAS32BIT=true
 
 mkdir "$MODPATH/zygisk"
 
