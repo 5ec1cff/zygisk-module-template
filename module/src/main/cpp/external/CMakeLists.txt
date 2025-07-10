@@ -27,6 +27,7 @@ set(LIBCXX_SOURCES
         mutex.cpp
         mutex_destructor.cpp
         new.cpp
+        new_helpers.cpp
         optional.cpp
         random.cpp
         #        regex.cpp
@@ -40,7 +41,6 @@ set(LIBCXX_SOURCES
         system_error.cpp
         thread.cpp
         #        typeinfo.cpp
-        utility.cpp
         valarray.cpp
         variant.cpp
         vector.cpp
@@ -56,9 +56,10 @@ set(LIBCXX_EXPORT_FLAGS
         -D_LIBCPP_DISABLE_VISIBILITY_ANNOTATIONS
         -D_LIBCXXABI_NO_EXCEPTIONS
         -D_LIBCPP_HAS_NO_LOCALIZATION
+        -D_LIBCPP_REMOVE_TRANSITIVE_INCLUDES
 )
 set(LIBCXX_FLAGS
-        -fvisibility-global-new-delete-hidden
+        -fvisibility-global-new-delete=force-hidden
         -fvisibility=hidden
         -fvisibility-inlines-hidden
 )
