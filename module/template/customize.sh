@@ -83,3 +83,6 @@ else
   extract "$ZIPFILE" "lib/arm64-v8a/lib$SONAME.so" "$MODPATH/zygisk" true
   mv "$MODPATH/zygisk/lib$SONAME.so" "$MODPATH/zygisk/arm64-v8a.so"
 fi
+
+ui_print "- Setting permissions"
+set_perm_recursive "$MODPATH" 0 0 0755 0644
