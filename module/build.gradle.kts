@@ -51,7 +51,7 @@ androidComponents.onVariants { variant ->
         val variantLowered = variant.name.lowercase()
         val variantCapped = variant.name.capitalizeUS()
         val buildTypeLowered = variant.buildType?.lowercase()
-        val supportedAbis = abiList.map {
+        val supportedAbis = abiList.joinToString(" ") {
             when (it) {
                 "arm64-v8a" -> "arm64"
                 "armeabi-v7a" -> "arm"
@@ -59,7 +59,7 @@ androidComponents.onVariants { variant ->
                 "x86_64" -> "x64"
                 else -> error("unsupported abi $it")
             }
-        }.joinToString(" ")
+        }
 
         val moduleDir = layout.buildDirectory.file("outputs/module/$variantLowered")
         val zipFileName =
